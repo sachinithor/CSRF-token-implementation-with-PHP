@@ -1,6 +1,4 @@
 <?php 
-session_start();
-require_once 'Token.php';
 
 if(isset($_POST['name'], $_POST['hiddenToken'])){
 
@@ -9,10 +7,9 @@ if(isset($_POST['name'], $_POST['hiddenToken'])){
 
     $hiddenToken   = $_POST['hiddenToken'];
 
-    if(isset($_COOKIE['sessionID'])){
-        $sessionID = $_COOKIE['sessionID'];
-        $originalToken = Token::getTokenBySession($sessionID);
-        if($hiddenToken == $originalToken){
+    if(isset($_COOKIE['tokenID'])){
+        $tokenCookie = $_COOKIE['tokenID'];
+        if($tokenCookie == $hiddenToken){
             $valid = true;
         }
     }
